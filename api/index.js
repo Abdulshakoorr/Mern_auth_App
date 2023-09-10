@@ -1,7 +1,8 @@
 import express from "express";
+import { dbConnection } from "../config/databaseConnection.js";
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.APP_PORT || 3000;
 
 app.get("/", (req, res) => {
   res.status(200).json({
