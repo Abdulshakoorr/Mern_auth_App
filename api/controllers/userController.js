@@ -1,15 +1,17 @@
 import { userModel } from "../models/user.js";
 import bcrypt from "bcryptjs";
+import { errorHandler } from "../utils/error.js";
+
 // create user
-export const createUser = async (req, res) => {
+export const createUser = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
-    if (!username || !email || !password) {
-      return res.status(400).json({
-        status: "failed",
-        message: "All fields are required must be enter data for all fields",
-      });
-    }
+    // if (!username || !email || !password) {
+    //   return res.status(400).json({
+    //     status: "failed",
+    //     message: "All fields are required must be enter data for all fields",
+    //   });
+    // }
     // hashing password
     const hashPassword = bcrypt.hashSync(password, 10);
     // hashed password
@@ -24,10 +26,7 @@ export const createUser = async (req, res) => {
       message: `user created successfully  ${username}`,
     });
   } catch (error) {
-    res.status(400).json({
-      status: "failed",
-      message: error.message,
-    });
+    next(errorHandler(400, `something went wrong : ${error.message}`));
   }
 };
 

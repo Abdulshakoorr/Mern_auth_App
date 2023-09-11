@@ -6,6 +6,13 @@ import {
   singleUser,
   updateUser,
 } from "../controllers/userController.js";
+// import {
+//   allUsers,
+//   createUser,
+//   deleteUser,
+//   singleUser,
+//   updateUser,
+// } from "../api/config/controllers/userController.js";
 
 const router = express.Router();
 
