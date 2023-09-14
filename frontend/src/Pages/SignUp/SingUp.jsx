@@ -35,7 +35,6 @@ const SingUp = () => {
         password: "",
       });
       setLoading(false);
-      setError(false);
     } catch (error) {
       setError(error.message);
       setLoading(false);
